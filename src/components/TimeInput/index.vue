@@ -33,6 +33,12 @@ export default {
     this.timeModel = this.type === 0 ? this.timeObject.bftDepartureTime : this.timeObject.bftReturnTime
   },
   watch: {
+    timeObject: {
+      handler (time) {
+        this.timeModel = this.type === 0 ? this.timeObject.bftDepartureTime : this.timeObject.bftReturnTime
+      },
+      deep: true
+    },
     // 监控父组件的focuseTime对象,然后做匹配是否当前input组件获得焦点
     focusTime (time) {
       if (time &&
@@ -41,8 +47,9 @@ export default {
           time.upDown === this.upDown) {
         this.focused = true
         // 获得物理焦点并全选
-        this.$refs.timeInput.$refs.rawTimeInputRef.focus()
-        this.$refs.timeInput.$refs.rawTimeInputRef.select()
+        console.log(this.$refs.timeInput)
+        this.$refs.timeInput.$el.focus()
+        this.$refs.timeInput.$el.select()
       } else {
         this.focused = false
       }

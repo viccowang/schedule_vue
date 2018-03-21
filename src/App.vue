@@ -51,7 +51,7 @@
                                 -->
                               <!-- 时刻1 -->
                               <time-input
-                                :time-object="timeItem.upFt"
+                                :timeObject="timeItem.upFt"
                                 :type="0"
                                 upDown="up"
                                 :focusTime.sync="focusTime"
@@ -59,7 +59,7 @@
                                 @updateData="updateData"/>
                               <!-- 时刻2 -->
                               <time-input
-                                :time-object="timeItem.upFt"
+                                :timeObject="timeItem.upFt"
                                 :type="1"
                                 upDown="up"
                                 :focusTime.sync="focusTime"
@@ -69,7 +69,7 @@
                             <li v-if="bfType === '1'" v-bind:style="{width: style.timeWidth / 2 +'px'}">
                               <!-- 时刻3 -->
                               <time-input
-                                :time-object="timeItem.downFt"
+                                :timeObject="timeItem.downFt"
                                 :type="0"
                                 upDown="down"
                                 :focusTime.sync="focusTime"
@@ -77,7 +77,7 @@
                                 @updateData="updateData" />
                               <!-- 时刻4 -->
                               <time-input
-                                :time-object="timeItem.downFt"
+                                :timeObject="timeItem.downFt"
                                 :type="1"
                                 upDown="down"
                                 :focusTime.sync="focusTime"
@@ -141,6 +141,8 @@ export default {
   },
   methods: {
     initData () {
+      // const { uri, urlParams } = this.getUriParams()
+      // console.log(uri)
       axios.post(
         // get Uri
         'http://192.168.10.53:8080/scp_xt/fahrplan/showTable1',
@@ -163,6 +165,23 @@ export default {
         //
         console.log(this.rawData)
       })
+    },
+    getUriParams () {
+      let urlHash = location.search
+      const uri = location.href.split('?')[0]
+      const urlParams = {}
+      if (urlHash.indexOf('?') !== -1) {
+        urlHash = urlHash.substr(1)
+        const params = urlHash.split('&')
+        for (let i = 0; i < params.length; i++) {
+          const p = params[i].split('=')
+          urlParams[p[0]] = p[1]
+        }
+      }
+      return {
+        uri,
+        urlParams
+      }
     },
     updateData (timeModel) {
       const data = this.rawData.fahrplanTimeList
@@ -279,6 +298,8 @@ export default {
     },
     // 快速录入
     fastEntry () {
+      // this.timeData[0][0].upFt.bftDepartureTime = '12:34'
+      // this.$set(this.timeData[0][0].upFt, 'bftDepartureTime', '00:00')
       console.log('fast entry event')
     },
     save () {
