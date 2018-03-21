@@ -1,0 +1,291 @@
+/**
+ *
+ */
+
+$border-color: #BBDEFB;    //时刻表通用边框
+$content-border-color: #e0e0e0; //时刻边框
+
+$highRowPadding: 10px 0; // 站点表头,高一些
+
+$primary: #03A9F4;
+$success: #009688;
+
+#scheduleApp {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position:relative;
+
+    .schedule-menu {
+        padding:3px;
+        display: flex;
+        // justify-content: flex-end;
+        border-bottom:1px solid $content-border-color;
+
+        button {
+            padding:5px 15px;
+            margin-right:3px;
+            border-radius:5px;
+            border:none;
+            background: $content-border-color;
+            height:100%;
+            cursor: pointer;
+
+            &.normal {
+                background-color: $content-border-color;
+                &:hover { background-color: lighten($content-border-color, 3%) }
+                &:active { background-color: darken($content-border-color, 1%) }
+            }
+
+            &.primary {
+                background-color: $primary;
+                color: #fff;
+                &:hover { background-color: lighten($primary, 3%) }
+                &:active { background-color: darken($primary, 5%) }
+            }
+
+            &.success {
+                background-color: $success;
+                color: #fff;
+                &:hover { background-color: lighten($success, 3%) }
+                &:active { background-color: darken($success, 5%) }
+            }
+
+            
+        }
+
+    }
+
+    .schedule-main {
+        display: flex;
+        width:100%;
+        flex:1;
+
+        .schedule-section-left {
+            flex:1 auto;
+            overflow: auto;
+      
+              .schedule-table{
+                  width: fit-content;
+                  display: flex;
+                  flex-direction: column;
+                  box-sizing: border-box;
+                  border:1px solid $border-color;
+      
+                  .schedule-header {
+                      display: flex;
+                      flex-direction: row;
+      
+                      .schedule-bc-header, .schedule-time-header {
+                          background-color: lighten($border-color, 10%);
+                          border-right:1px solid $border-color;
+                          box-sizing: border-box;
+      
+                          &:last-child {
+                              border-right:none;
+                          }
+          
+                          ul {
+      
+                              li{
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  padding: 4px 0;
+                                  border-bottom: 1px solid $border-color;
+          
+                                  &.higher {
+                                      padding: $highRowPadding;
+                                  }
+                              }
+                          }
+                      }
+      
+                      .schedule-time-header {
+                          ul {
+                              li {
+                                  &.start-end-station {
+                                      padding: 0;
+                                      display:flex;
+      
+                                      > div {
+                                          flex: 1 auto;
+                                          padding: $highRowPadding;
+                                          display: flex;
+                                          justify-content: center;
+                                          align-items: center;
+                                          box-sizing: border-box;
+                                          overflow: hidden;
+                                          border-right:1px solid $border-color;
+      
+                                          &:last-child {
+                                              border-right:none;
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+      
+                  }
+      
+                  .schedule-content {
+                      display: flex;
+      
+                      .schedule-bc-content, .schedule-time-content {
+                          
+                          ul {
+                              border-right:1px solid $content-border-color;
+      
+                              li {
+                                  display: flex;
+                                  justify-content: center;
+                                  align-items: center;
+                                  padding: 4px 0;
+                                  border-bottom: 1px solid $content-border-color;
+                              }
+                          }
+                      }
+      
+                      .schedule-bc-content {
+                          
+      
+                      }
+      
+                      .schedule-time-content{
+                          flex: 1;
+      
+                          .schedule-time-row {
+                              display: flex;
+      
+                              ul {
+                                  display: flex;
+                                  
+                                  li {
+                                      display: inherit;
+                                      flex:1 auto;
+                                      padding:0;
+                                      border-right:1px solid $content-border-color;
+          
+                                      > div {
+                                          display: flex;
+                                          justify-content: center;
+                                          align-items: center;
+                                          
+                                          box-sizing: border-box;
+                                          border-right:1px solid $content-border-color;
+                                          
+      
+                                          &.time-input{
+                                              flex:1;
+                                              display: flex;
+                                          
+                                              input {
+                                                  display: flex;
+                                                  flex: 1;
+                                                  width:100%;
+                                                  border:none;
+                                                  text-align: center;
+                                                  box-sizing: border-box;
+                                          
+                                                  &.focused {
+                                                      border:2px solid #03A9F4;
+                                                  }
+                                          
+                                              }
+                                          }
+      
+                                          &:last-child {
+                                              border-right: none;
+                                          }
+                                      }
+          
+                                      &:last-child {
+                                          border-right: none;
+                                      }
+                                  }
+                              }
+      
+                          }
+                          
+                      }
+      
+      
+                  }
+               
+            
+              }
+      
+          }
+      
+          .schedule-section-right {
+            flex:none;
+            width:220px;
+            background:lighten($content-border-color, 10%);
+            border-left:2px solid $content-border-color;
+            padding:10px;
+            box-sizing: border-box;
+      
+      
+            .model-right-block {
+                padding:10px;
+                margin-bottom:5px;
+                border-radius:8px;
+                border: 1px solid $content-border-color;
+
+                &:last-child {
+                    margin-bottom:0;
+                }
+      
+      
+              .model-title { 
+                  font-size:14px;
+                  font-weight:600;
+                  border-bottom: 1px solid $content-border-color;
+              }
+              .model-content {
+                  display: flex;
+      
+                  &.column {
+                      flex-direction: column
+                  }
+      
+                  label.label-item {
+                      display: block;
+                      padding: 5px 0;
+
+                      &.inline {
+                          display: inline-block;
+                      }
+
+                      .small {
+                          width:100px;
+                          margin-left:10px;
+                      }
+
+                  }
+      
+              }
+      
+            }
+      
+          }
+    }
+
+    
+
+    .loading {
+        position:absolute;
+        left:0;top:0;
+        width:100%; height:100%;
+        overflow:hidden;
+        background-color: rgba(255,255,255,.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size:1.5rem;
+    }
+
+  }
